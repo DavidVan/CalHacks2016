@@ -1,4 +1,9 @@
 var map;
+// global image variable that will determine which photo to drop in the map
+var markerimage;
+var longitude;
+var latitude;
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 0, lng: 0},
@@ -27,6 +32,12 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
     $(document).ready(initAutocomplete());
+	
+	// Places a custom marker on map on click
+	google.maps.event.addListener(map, 'click', function(event) {
+	   placeMarker(event.latLng);
+	});
+
 }
 
 function initAutocomplete()
@@ -45,10 +56,10 @@ function initAutocomplete()
     var autocomplete = new google.maps.places.Autocomplete(input, options);
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
         console.log("Does this work?");
-        var place = autocomplete.getPlace();
-        console.log(place.geometry.location.lng());
-        console.log(place.geometry.location.lat());
-        console.log(JSON.stringify(place, null, 4));
+		var place = autocomplete.getPlace();
+		latitude = place.geometry.location.lat();
+		longitude = place.geometry.location.lng();
+		console.log(latitude);
     });
     //console.log("Does this work? (initAutocomplete)");
 }
@@ -57,8 +68,11 @@ function getLocation()
 {
     console.log("Does this work?");
     var place = autocomplete.getPlace();
-    console.log(place.geometry.location.lat());
-    console.log(place.geometry.location.lng());
+    latitude = place.geometry.location.lat();
+    longitude = place.geometry.location.lng();
+	console.log(latitude);
+
+	
     /*
     for (var i = 0; i < place.address_components.length; i++)
     {
@@ -121,4 +135,23 @@ function zoomTo(marker) {
             return;
         }
     }, 500);
+}
+
+$("#marker_images a").click(function(e){
+	markerimage = $(this).find("img").attr("src");
+	console.log(markerimage);
+});
+
+$("#submit").click(function(e){
+	var new_marker = createMarker(latitude, longitude);
+	zoomTo(new_marker);
+});
+
+
+function placeMarker(location) {
+    var marker = new google.maps.Marker({
+        position: location, 
+        map: map,
+		icon: "../" + markerimage
+    });
 }
