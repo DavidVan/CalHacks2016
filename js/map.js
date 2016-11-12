@@ -8,6 +8,6 @@ function initMap() {
 
 $(window).resize(function () {
     var height = $(window).height(),
-    offsetTop = 50;
-    $('#map').css('height', (height - offsetTop));
+    offset = 50;
+    $('#map').css('height', (height - offset));
 }).resize();
