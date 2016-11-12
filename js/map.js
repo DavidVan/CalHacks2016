@@ -5,3 +5,9 @@ function initMap() {
         zoom: 8
     });
 }
+
+$(window).resize(function () {
+    var height = $(window).height(),
+    offsetTop = 50;
+    $('#map').css('height', (height - offsetTop));
+}).resize();
