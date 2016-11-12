@@ -115,7 +115,7 @@ function setInformation(marker, info) {
 }
 
 function setAllInformation() {
-    var i = 0;
+    var i = 1;
     markerlist.forEach(function (element) {
         setInformation(element, "House #" + i);
         i++;
