@@ -114,6 +114,14 @@ function setInformation(marker, info) {
     });
 }
 
+function setAllInformation() {
+    var i = 0;
+    markerlist.forEach(function (element) {
+        setInformation(element, "House #" + i);
+        i++;
+    });
+}
+
 function zoomTo(marker) {
     zoom = map.getZoom();
     var interval = setInterval(function() {
@@ -174,5 +182,3 @@ function createImageMarker(location) {
     });
 	markerlist.push(marker);
 }
-
-
