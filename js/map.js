@@ -26,20 +26,48 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
+    $(document).ready(initAutocomplete());
+}
 
+function initAutocomplete()
+{
     var defaultBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(-90, -180),
         new google.maps.LatLng(90, 180));
 
-    var input = document.getElementById("locationInput")
+    var input = document.getElementById("locationInput");
     var options = {
         bounds: defaultBounds,
-        types: ['(cities)']
-    }
+        types: ['geocode']
+    };
 
 
     var autocomplete = new google.maps.places.Autocomplete(input, options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        console.log("Does this work?");
+        var place = autocomplete.getPlace();
+        console.log(place.geometry.location.lng());
+        console.log(place.geometry.location.lat());
+        console.log(JSON.stringify(place, null, 4));
+    });
+    //console.log("Does this work? (initAutocomplete)");
+}
 
+function getLocation()
+{
+    console.log("Does this work?");
+    var place = autocomplete.getPlace();
+    console.log(place.geometry.location.lat());
+    console.log(place.geometry.location.lng());
+    /*
+    for (var i = 0; i < place.address_components.length; i++)
+    {
+        console.log(place.address_components[i].types[0]);
+        if ((componentForm[addressType]))
+        {
+            console.log(place.address_components[i][componentForm[addressType]]);
+        }
+    }*/
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
