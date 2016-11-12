@@ -54,4 +54,9 @@ $(window).resize(function () {
     $('#map').css('height', (height - offset));
 }).resize();
 
-
+function setLocation(lat, lng) {
+    var marker = new google.maps.Marker({
+        position: {lat: lat, lng: lng}
+    });
+    marker.setMap(map);
+}
