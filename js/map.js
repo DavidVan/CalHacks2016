@@ -32,7 +32,7 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
     $(document).ready(initAutocomplete());
-	
+
 	// Places a custom marker on map on click
 	google.maps.event.addListener(map, 'click', function(event) {
 	   placeMarker(event.latLng);
@@ -149,14 +149,14 @@ $(window).keydown(function(event){
 
 function placeMarker(location) {
 	var m_icon = {
-		url: "../" + markerimage, // url
+		url: markerimage, // url
 		scaledSize: new google.maps.Size(100, 100), // scaled size
 		origin: new google.maps.Point(0,0), // origin
 		anchor: new google.maps.Point(0, 0) // anchor
 	};
-	
+
     var marker = new google.maps.Marker({
-        position: location, 
+        position: location,
         map: map,
 		animation: google.maps.Animation.DROP,
 		icon: m_icon
