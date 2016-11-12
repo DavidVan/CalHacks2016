@@ -2,7 +2,8 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 0, lng: 0},
-        zoom: 2
+        zoom: 2,
+        mapTypeId: 'satellite'
     });
     var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -79,4 +80,17 @@ function setInformation(marker, info) {
     marker.addListener('click', function() {
         informationWindow.open(map, marker);
     });
+}
+
+function zoomTo(marker) {
+    zoom = map.getZoom();
+    var interval = setInterval(function() {
+        map.panTo(marker.position);
+        zoom += 1;
+        map.setZoom(zoom);
+        if (zoom >= 24) {
+            clearInterval(interval);
+            return;
+        }
+    }, 500);
 }
