@@ -3,6 +3,7 @@ var map;
 var markerimage = "img/bighouse.jpg";
 var longitude;
 var latitude;
+var markerlist = [];
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -35,7 +36,7 @@ function initMap() {
 
 	// Places a custom marker on map on click
 	google.maps.event.addListener(map, 'click', function(event) {
-	   placeMarker(event.latLng);
+	   createImageMarker(event.latLng);
 	});
 
 }
@@ -157,7 +158,7 @@ $(window).keydown(function(event){
     }
 });
 
-function placeMarker(location) {
+function createImageMarker(location) {
 	var m_icon = {
 		url: markerimage, // url
 		scaledSize: new google.maps.Size(100, 100), // scaled size
@@ -171,6 +172,7 @@ function placeMarker(location) {
 		animation: google.maps.Animation.DROP,
 		icon: m_icon
     });
+	markerlist.push(marker);
 }
 
 
