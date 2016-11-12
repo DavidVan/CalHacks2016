@@ -71,17 +71,6 @@ function getLocation()
     latitude = place.geometry.location.lat();
     longitude = place.geometry.location.lng();
 	console.log(latitude);
-
-	
-    /*
-    for (var i = 0; i < place.address_components.length; i++)
-    {
-        console.log(place.address_components[i].types[0]);
-        if ((componentForm[addressType]))
-        {
-            console.log(place.address_components[i][componentForm[addressType]]);
-        }
-    }*/
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -135,6 +124,8 @@ function zoomTo(marker) {
             return;
         }
     }, 500);
+	// Prevents scrolling/zooming of the map
+	map.setOptions({'scrollwheel': false});
 }
 
 $("#marker_images a").click(function(e){
@@ -157,9 +148,27 @@ $(window).keydown(function(event){
 });
 
 function placeMarker(location) {
+	var m_icon = {
+		url: "../" + markerimage, // url
+		scaledSize: new google.maps.Size(100, 100), // scaled size
+		origin: new google.maps.Point(0,0), // origin
+		anchor: new google.maps.Point(0, 0) // anchor
+	};
+	
     var marker = new google.maps.Marker({
         position: location, 
         map: map,
-		icon: "../" + markerimage
+		animation: google.maps.Animation.DROP,
+		icon: m_icon
     });
+	marker.addListener('click', toggleBounce);
+}
+
+// Prevents the marker from bouncing infinitely
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
 }
