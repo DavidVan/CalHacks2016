@@ -1,6 +1,6 @@
 var map;
 // global image variable that will determine which photo to drop in the map
-var markerimage = "img/bighouse.jpg";
+var markerimage = "img/bighouse.png";
 var longitude;
 var latitude;
 var markerlist = [];
