@@ -147,6 +147,14 @@ $("#submit").click(function(e){
 	zoomTo(new_marker);
 });
 
+$(window).keydown(function(event){
+    if(event.keyCode == 13) {
+        event.preventDefault();
+        var new_marker = createMarker(latitude, longitude);
+        zoomTo(new_marker);
+        return false;
+    }
+});
 
 function placeMarker(location) {
     var marker = new google.maps.Marker({

@@ -4,14 +4,8 @@
 
 $(document).ready(function()
 {
-    $("#submitButton").on("click", function() {
+    $("#submit").on("click", function() {
         testLocation();
-    });
-    $(window).keydown(function(event){
-        if(event.keyCode == 13) {
-            event.preventDefault();
-            return false;
-        }
     });
 });
 
