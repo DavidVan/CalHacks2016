@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang = "en">
+    <head>
+        <title>Project Name Here</title>
+        <meta charset="utf-8">
+        <link rel = "stylesheet" href = "css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+		<div class="row">
+			<div id="content" class="col-md-9">
+				<div id="map"></div>
+			</div>
+			<div id="marker_images" class="col-md-3 list-group">
+				<a href="#" class="list-group-item list-group-item-action active" style="text-align:center;">
+					<h5 class="list-group-item-heading">Dual Complex House</h5>
+					<img src="img/bighouse.png" class="map_image">
+			    </a>
+				<a href="#" class="list-group-item list-group-item-action" style="text-align:center;">
+					<h5 class="list-group-item-heading">Bushes</h5>
+					<img src="img/bushes.png" class="map_image">
+			    </a>
+			</div>
+		</div>
+        <script src = "js/jquery-3.1.1.min.js"></script>
+        <script src = "js/bootstrap.min.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7-FzcyDy9-OfBn2bwvRwKe_7TPWzxhuc&callback=initMap&libraries=places" type="text/javascript"></script>
+        <script src="js/map.js"></script>
+        <script src = "js/formcontrol.js"></script>
+    </body>
+</html>

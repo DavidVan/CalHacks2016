@@ -1,6 +1,6 @@
 var map;
 // global image variable that will determine which photo to drop in the map
-var markerimage;
+var markerimage = "img/bighouse.jpg";
 var longitude;
 var latitude;
 
@@ -138,6 +138,16 @@ $("#submit").click(function(e){
 	zoomTo(new_marker);
 });
 
+
+$('.list-group a').click(function(e) {
+	e.preventDefault()
+
+	$that = $(this);
+
+	$that.parent().find('a').removeClass('active');
+	$that.addClass('active');
+});
+
 $(window).keydown(function(event){
     if(event.keyCode == 13) {
         event.preventDefault();
@@ -152,7 +162,7 @@ function placeMarker(location) {
 		url: markerimage, // url
 		scaledSize: new google.maps.Size(100, 100), // scaled size
 		origin: new google.maps.Point(0,0), // origin
-		anchor: new google.maps.Point(0, 0) // anchor
+		anchor: new google.maps.Point(50, 50) // anchor
 	};
 
     var marker = new google.maps.Marker({
@@ -161,14 +171,6 @@ function placeMarker(location) {
 		animation: google.maps.Animation.DROP,
 		icon: m_icon
     });
-	marker.addListener('click', toggleBounce);
 }
 
-// Prevents the marker from bouncing infinitely
-function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
-}
+
